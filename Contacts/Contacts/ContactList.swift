@@ -9,6 +9,6 @@
 import Foundation
 
 class ContactList {
-    var contacts = ["Jane Doe":"313-555-1212",
-                    "Lisa Vance":"313-888-3131"]
+    var contacts = [(name:"Jane Doe", phoneNumber:"313-555-1212"),
+                    (name:"Lisa Vance", phoneNumber:"313-888-3131")]
 }

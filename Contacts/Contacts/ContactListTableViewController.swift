@@ -10,6 +10,9 @@ import UIKit
 
 class ContactListTableViewController: UITableViewController {
 
+    
+    var contactNames: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,18 +26,26 @@ class ContactListTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        populateContactNames()
     }
 
     // MARK: - Table view data source
 
+    func populateContactNames() {
+        let contactList = ContactList()
+        for contact in contactList.contacts {
+            //let newContact = Contact(name: contact.name, phoneNumber: contact.phoneNumber)
+            contactNames.append(contact.name)
+        }
+        
+        
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return contactNames.count
     }
 
     /*
