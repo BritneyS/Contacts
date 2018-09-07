@@ -8,14 +8,27 @@
 
 import UIKit
 
+//class ContactListTableViewCell: UITableViewCell {
+//
+//
+//
+//
+//}
+
+enum Identity: String {
+    case contactName
+}
+
 class ContactListTableViewController: UITableViewController {
+
 
     
     var contactNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("Start")
+        populateContactNames()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,8 +38,9 @@ class ContactListTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
-        populateContactNames()
+        
     }
 
     // MARK: - Table view data source
@@ -37,6 +51,7 @@ class ContactListTableViewController: UITableViewController {
             //let newContact = Contact(name: contact.name, phoneNumber: contact.phoneNumber)
             contactNames.append(contact.name)
         }
+        print(contactNames)
         
         
     }
@@ -48,15 +63,16 @@ class ContactListTableViewController: UITableViewController {
         return contactNames.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let contactNameCellID = Identity.contactName.rawValue
+        let cell = tableView.dequeueReusableCell(withIdentifier: contactNameCellID, for: indexPath)
+        
         // Configure the cell...
-
+        cell.textLabel?.text = "\(contactNames[indexPath.row])"
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
