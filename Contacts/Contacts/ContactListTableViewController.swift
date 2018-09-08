@@ -32,12 +32,17 @@ enum SegueIdentity: String {
     case contactDetails
 }
 
-class ContactListTableViewController: UITableViewController, ContactDetailsViewControllerDelegate {
+class ContactListTableViewController: UITableViewController, ContactDetailsViewControllerDelegate, AddContactTableViewControllerDelegate {
     
+    // implements ContactDetails protocol
     func contactDetailsViewControllerDidCancel(_ controller: ContactDetailsViewController) {
         navigationController?.popViewController(animated: true)
     }
     
+    // implements AddContact protocol
+    func addContactTableViewControllerDidCancel(_ controller: AddContactTableViewController) {
+        navigationController?.popViewController(animated: true)
+    }
 
    
 
