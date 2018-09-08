@@ -15,6 +15,9 @@ protocol ContactDetailsViewControllerDelegate: class {
 
 class ContactDetailsViewController: UIViewController {
 
+    @IBOutlet weak var contactNameLabel: UILabel!
+    
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     
     weak var delegate: ContactDetailsViewControllerDelegate?
 
