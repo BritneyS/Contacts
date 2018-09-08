@@ -32,8 +32,14 @@ enum SegueIdentity: String {
     case contactDetails
 }
 
-class ContactListTableViewController: UITableViewController {
+class ContactListTableViewController: UITableViewController, ContactDetailsViewControllerDelegate {
+    
+    func contactDetailsViewControllerDidCancel(_ controller: ContactDetailsViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 
+   
 
     
     var contactNames: [String] = []
@@ -78,7 +84,7 @@ class ContactListTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contactNameCellID = Identity.contactName.rawValue
+        let contactNameCellID = SegueIdentity.contactName.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: contactNameCellID, for: indexPath)
         
         // Configure the cell...
@@ -114,11 +120,12 @@ class ContactListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let addItem = SegueIdentity.addItem.rawValue
         let contactDetails = SegueIdentity.contactDetails.rawValue
-        if segue.identifier == addItem {
-            let controller = segue.destination as! AddItemTableViewController //as : casting object (downcasting), can be nil
-            controller.delegate = self //self as delegate
-        } else if segue.identifier == contactDetails {
+        if segue.identifier == contactDetails {
             //segue to contact details page
+            let controller = segue.destination as! ContactDetailsViewController //as : casting object (downcasting), can be nil
+            controller.delegate = self //self as delegate
+        } else if segue.identifier == addItem {
+            //segue to add item page
         }
     
 
