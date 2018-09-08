@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zjn-v4-fgj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VOd-Mu-XkY">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Contact List Table View Controller-->
+        <!--Contact Names-->
         <scene sceneID="Gp2-Nb-k6g">
             <objects>
                 <tableViewController id="zjn-v4-fgj" customClass="ContactListTableViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,8 +32,27 @@
                             <outlet property="delegate" destination="zjn-v4-fgj" id="HCM-V3-Tjr"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Contact Names" id="0VT-zl-hsC"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbW-9a-xJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028" y="32.512315270935964"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="R4f-eB-Vit">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VOd-Mu-XkY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="quB-bq-6YL">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zjn-v4-fgj" kind="relationship" relationship="rootViewController" id="xjo-r5-Jm7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tsc-zl-Xra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85.599999999999994" y="32.512315270935964"/>
         </scene>

@@ -6,6 +6,17 @@
 //  Copyright © 2018 Britney Smith. All rights reserved.
 //
 
+/*
+ Build an iOS app that stores and manages a contact list
+ Your app should utilize Model-View-Controller architecture
+ On the main page, your app should list each contact’s name in a table view
+ The user should be able to swipe to delete items
+ Your app should have a button which allows the user to add contacts to the list
+ When the user clicks on a name in the table view, they should be taken to a detail page that displays the contact’s name and phone number
+ BONUS: Give the user the ability to edit contact details
+ */
+
+
 import UIKit
 
 //class ContactListTableViewCell: UITableViewCell {
@@ -15,8 +26,10 @@ import UIKit
 //
 //}
 
-enum Identity: String {
+enum SegueIdentity: String {
     case contactName
+    case addItem
+    case contactDetails
 }
 
 class ContactListTableViewController: UITableViewController {
@@ -82,41 +95,32 @@ class ContactListTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            swipeToDelete(indexPath: indexPath)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func swipeToDelete(indexPath: IndexPath) {
+        contactNames.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        let addItem = SegueIdentity.addItem.rawValue
+        let contactDetails = SegueIdentity.contactDetails.rawValue
+        if segue.identifier == addItem {
+            let controller = segue.destination as! AddItemTableViewController //as : casting object (downcasting), can be nil
+            controller.delegate = self //self as delegate
+        } else if segue.identifier == contactDetails {
+            //segue to contact details page
+        }
+    
 
+    }
 }
