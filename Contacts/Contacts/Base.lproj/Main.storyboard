@@ -34,6 +34,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contact Names" id="0VT-zl-hsC"/>
+                    <connections>
+                        <segue destination="fem-3M-bJY" kind="show" identifier="contactDetails" id="kQj-Dn-hwW"/>
+                        <segue destination="BdH-Tq-S1c" kind="show" identifier="addContact" id="lK1-5R-94D"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbW-9a-xJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

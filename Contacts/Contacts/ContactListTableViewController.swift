@@ -26,11 +26,6 @@ import UIKit
 //
 //}
 
-enum SegueIdentity: String {
-    case contactName
-    case addItem
-    case contactDetails
-}
 
 class ContactListTableViewController: UITableViewController, ContactDetailsViewControllerDelegate, AddContactTableViewControllerDelegate {
     
@@ -89,7 +84,7 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contactNameCellID = SegueIdentity.contactName.rawValue
+        let contactNameCellID = ElementIdentity.contactName.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: contactNameCellID, for: indexPath)
         
         // Configure the cell...
@@ -123,13 +118,13 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let addItem = SegueIdentity.addItem.rawValue
+        let addContact = SegueIdentity.addContact.rawValue
         let contactDetails = SegueIdentity.contactDetails.rawValue
         if segue.identifier == contactDetails {
             //segue to contact details page
             let controller = segue.destination as! ContactDetailsViewController //as : casting object (downcasting), can be nil
             controller.delegate = self //self as delegate
-        } else if segue.identifier == addItem {
+        } else if segue.identifier == addContact {
             //segue to add item page
         }
     
