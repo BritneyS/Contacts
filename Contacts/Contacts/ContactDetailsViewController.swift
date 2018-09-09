@@ -23,11 +23,12 @@ class ContactDetailsViewController: UIViewController {
     
     weak var delegate: ContactDetailsViewControllerDelegate?
     
-    var contactName = ""
-    var phoneNumber = ""
+    var contactName: String? = ""
+    var phoneNumber: String? = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showContact()
 
         // Do any additional setup after loading the view.
     }
@@ -37,8 +38,13 @@ class ContactDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func showContact() {
-//        let contact = Contact(name: contactNames.name, phoneNumber: contactNames.phoneNumber)
+    func showContact() {
+        contactNameLabel.text = self.contactName
+        phoneNumberLabel.text = self.phoneNumber
+    }
+    
+    //    func showContact() {
+    //        let contact = Contact(name: contactNames.name, phoneNumber: contactNames.phoneNumber)
 //    }
 
     /*

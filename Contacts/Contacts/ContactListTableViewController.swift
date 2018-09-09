@@ -89,10 +89,10 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contactNameCellID = ElementIdentity.contactName.rawValue
-        let cell = tableView.dequeueReusableCell(withIdentifier: contactNameCellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: contactNameCellID, for: indexPath) as! ContactListTableViewCell
         
         // Configure the cell...
-        cell.textLabel?.text = "\(contactNames[indexPath.row].name)"
+        cell.contactNameListLabel?.text = "\(contactNames[indexPath.row].name)"
         return cell
     }
  
@@ -122,19 +122,48 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let contactName = "test name"
+        let phoneNumber = "test phone number"
         let addContact = SegueIdentity.addContact.rawValue
         let contactDetails = SegueIdentity.contactDetails.rawValue
         if segue.identifier == contactDetails {
             //segue to contact details page
-            let controller = segue.destination as! ContactDetailsViewController //as : casting object (downcasting), can be nil
-            controller.delegate = self //self as delegate
-//            controller.contactNameLabel.text = "\(contactNames[indexPath.row].name)"
+            if let controller = segue.destination as? ContactDetailsViewController {
+                controller.contactName = contactName
+                controller.phoneNumber = phoneNumber
+                controller.delegate = self //self as delegate
+                
+            }
             
+            //as : casting object (downcasting), can be nil
+
             
         } else if segue.identifier == addContact {
             //segue to add item page
         }
-    
 
     }
+    
+//    let data = Data()
+//    if let destinationViewController = segue.destination as? DestinationViewController {
+//        destinationViewController.data = data
+//    }
+    
+    // multiple segue trick
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let addContact = SegueIdentity.addContact.rawValue
+//        let contactDetails = SegueIdentity.contactDetails.rawValue
+//        let segueIdentifier: String
+//
+//        switch indexPath.row {
+//        case 0:
+//            segueIdentifier = addContact
+//        case 1:
+//            segueIdentifier = contactDetails
+//        default:
+//            segueIdentifier = addContact
+//        }
+//
+//        self.performSegue(withIdentifier: segueIdentifier, sender: self)
+//    }
 }
