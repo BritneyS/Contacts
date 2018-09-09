@@ -19,19 +19,21 @@
 
 import UIKit
 
-//class ContactListTableViewCell: UITableViewCell {
-//
-//
-//
-//
-//}
+
 
 
 class ContactListTableViewController: UITableViewController, ContactDetailsViewControllerDelegate, AddContactTableViewControllerDelegate {
     
+    
+    
+    
     // implements ContactDetails protocol
     func contactDetailsViewControllerDidCancel(_ controller: ContactDetailsViewController) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func contactDetailsViewController(_ controller: ContactDetailsViewController, didShow item: Contact) {
+        
     }
     
     // implements AddContact protocol
@@ -42,12 +44,14 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
    
 
     
-    var contactNames: [String] = []
+    
+    var contactNames: [Contact] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Start")
         populateContactNames()
+        navigationController?.navigationBar.prefersLargeTitles = true //large titles
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -67,8 +71,8 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
     func populateContactNames() {
         let contactList = ContactList()
         for contact in contactList.contacts {
-            //let newContact = Contact(name: contact.name, phoneNumber: contact.phoneNumber)
-            contactNames.append(contact.name)
+            let newContact = Contact(name: contact.name, phoneNumber: contact.phoneNumber)
+            contactNames.append(newContact)
         }
         print(contactNames)
         
@@ -88,7 +92,7 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
         let cell = tableView.dequeueReusableCell(withIdentifier: contactNameCellID, for: indexPath)
         
         // Configure the cell...
-        cell.textLabel?.text = "\(contactNames[indexPath.row])"
+        cell.textLabel?.text = "\(contactNames[indexPath.row].name)"
         return cell
     }
  
@@ -124,6 +128,9 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
             //segue to contact details page
             let controller = segue.destination as! ContactDetailsViewController //as : casting object (downcasting), can be nil
             controller.delegate = self //self as delegate
+//            controller.contactNameLabel.text = "\(contactNames[indexPath.row].name)"
+            
+            
         } else if segue.identifier == addContact {
             //segue to add item page
         }

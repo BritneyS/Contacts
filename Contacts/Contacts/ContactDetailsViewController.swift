@@ -11,6 +11,8 @@ import UIKit
 protocol ContactDetailsViewControllerDelegate: class {
     
     func contactDetailsViewControllerDidCancel(_ controller: ContactDetailsViewController)
+    
+    func contactDetailsViewController(_ controller: ContactDetailsViewController, didShow item: Contact)
 }
 
 class ContactDetailsViewController: UIViewController {
@@ -20,6 +22,9 @@ class ContactDetailsViewController: UIViewController {
     @IBOutlet weak var phoneNumberLabel: UILabel!
     
     weak var delegate: ContactDetailsViewControllerDelegate?
+    
+    var contactName = ""
+    var phoneNumber = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +37,9 @@ class ContactDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+//    func showContact() {
+//        let contact = Contact(name: contactNames.name, phoneNumber: contactNames.phoneNumber)
+//    }
 
     /*
     // MARK: - Navigation
