@@ -19,34 +19,13 @@
 
 import UIKit
 
-
-
-
-class ContactListTableViewController: UITableViewController, ContactDetailsViewControllerDelegate, AddContactTableViewControllerDelegate {
-    
-    
-    
-    
-    // implements ContactDetails protocol
-    func contactDetailsViewControllerDidCancel(_ controller: ContactDetailsViewController) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func contactDetailsViewController(_ controller: ContactDetailsViewController, didShow item: Contact) {
-        
-    }
+class ContactListTableViewController: UITableViewController, AddContactTableViewControllerDelegate {
     
     // implements AddContact protocol
     func addContactTableViewControllerDidCancel(_ controller: AddContactTableViewController) {
         navigationController?.popViewController(animated: true)
     }
 
-   
-
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Start")
@@ -124,24 +103,25 @@ class ContactListTableViewController: UITableViewController, ContactDetailsViewC
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        //let contactName = "test name"
-        //let phoneNumber = "test phone number"
         let addContact = SegueIdentity.addContact.rawValue
         let contactDetails = SegueIdentity.contactDetails.rawValue
+        
         if segue.identifier == contactDetails {
             //segue to contact details page
             if let controller = segue.destination as? ContactDetailsViewController, let currentIndex = tableView.indexPathForSelectedRow?.row {
                 controller.contactName = contactNames[currentIndex].name
                 controller.phoneNumber = contactNames[currentIndex].phoneNumber
-                controller.delegate = self //self as delegate
+                //controller.delegate = self //self as delegate
                 
             }
         } else if segue.identifier == addContact {
             //segue to add item page
-        }
+            if let controller = segue.destination as? AddContactTableViewController {
+                controller.delegate = self //self as delegate
+            }
 
-    }
+        }
     
 
+    }
 }

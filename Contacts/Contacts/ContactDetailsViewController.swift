@@ -8,20 +8,12 @@
 
 import UIKit
 
-protocol ContactDetailsViewControllerDelegate: class {
-    
-    func contactDetailsViewControllerDidCancel(_ controller: ContactDetailsViewController)
-    
-    func contactDetailsViewController(_ controller: ContactDetailsViewController, didShow item: Contact)
-}
 
 class ContactDetailsViewController: UIViewController {
 
     @IBOutlet weak var contactNameLabel: UILabel!
     
     @IBOutlet weak var phoneNumberLabel: UILabel!
-    
-    weak var delegate: ContactDetailsViewControllerDelegate?
     
     var contactName: String? = ""
     var phoneNumber: String? = ""
@@ -43,10 +35,6 @@ class ContactDetailsViewController: UIViewController {
         phoneNumberLabel.text = self.phoneNumber
     }
     
-    //    func showContact() {
-    //        let contact = Contact(name: contactNames.name, phoneNumber: contactNames.phoneNumber)
-//    }
-
     /*
     // MARK: - Navigation
 
