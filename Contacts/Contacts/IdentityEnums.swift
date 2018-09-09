@@ -15,4 +15,5 @@ enum ElementIdentity: String {
 enum SegueIdentity: String {
     case addContact
     case contactDetails
+    
 }
